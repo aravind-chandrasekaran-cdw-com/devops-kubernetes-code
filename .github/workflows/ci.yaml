@@ -86,17 +86,17 @@ jobs:
         with:
           repository: aravind-chandrasekaran-cdw-com/devops-kubernetes-code
           token: ${{ secrets.GH_PAT }}
-          path: deploy-repo
+          path: devops-kubernetes-config
 
       - name: Update image tag in deployment.yaml
         run: |
-          sed -i "s|\(image: .*/teach-react-app:\).*|\1${{ steps.version.outputs.tag }}|" deploy-repo/deployment.yaml
+          sed -i "s|\(image: .*/teach-react-app:\).*|\1${{ steps.version.outputs.tag }}|" devops-kubernetes-config/deployment.yaml
 
       - name: Raise PR to deploy repository
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
-          cd deploy-repo
+          cd devops-kubernetes-config
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           BRANCH="update-image-${{ steps.version.outputs.tag }}"
