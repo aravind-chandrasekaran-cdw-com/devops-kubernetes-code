@@ -11,3 +11,9 @@
 *.njsproj
 *.sln
 *.sw?
+node_modules
+build
+.dockerignore
+.git
+.gitignore
+README.md
